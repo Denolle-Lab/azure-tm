@@ -16,5 +16,5 @@ conda activate azure
 az login
 ```
 
-## confirm
+## Check current login
 `az account show`
