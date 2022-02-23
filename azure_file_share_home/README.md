@@ -1,9 +1,12 @@
 # Azure file share
 
-network-attachable hard drive
+network-attachable hard drive. Note this is used for persistant storage of files for a Jupyter server. \
 
-https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files
+The [../aci_container_instance](../aci_container_instance) configuration launches a server with this drive
+mounted over `/home/jovyan` so that your files persist between sessions
 
+
+## Usage
 ```
 terraform init
 terraform apply
@@ -24,3 +27,7 @@ export STORAGE_ACCOUNT="seisbench"
 export SHARE_NAME="seisbench"
 open "smb://${STORAGE_ACCOUNT}:${STORAGE_ACCOUNT_KEY}@${STORAGE_ACCOUNT}.file.core.windows.net/${SHARE_NAME}
 ```
+
+## References
+
+https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files
