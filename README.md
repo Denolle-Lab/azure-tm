@@ -25,7 +25,45 @@ Check current login credentials:
 az account show
 ```
 
+## Organization
+
+Each subfolder contains a stand-alone logical group of Cloud resources. To create the infrastructure,
+navigate to a subfolder in the terminal and follow the README.md instructions.
+
+### Workspaces
+Each subfolder contains a recipe for a group of cloud resources with a self-describing subfolder name (basic_virtual_machine). Let's say several lab members each need a virtual machine. The recipe is the same and each time we use it, we create a new [Terraform Workspace](https://www.terraform.io/language/state/workspaces) to keep track of the Cloud resources created and not interfere with one another. For example:
+
+```
+cd basic_virtual_machine
+
+# Connect to state backend (see 'Initial Setup' section below)
+terraform init
+
+terraform workspace new scott-incubator2022
+
+# Optionally edit terraform.tfvars to change things like region or machine type
+terraform apply
+
+# Easily remove any costly Cloud resources
+terraform destroy
+terraform workspace delete scott-incubator2022
+```
+
+### Directory
+| subfolder | description |
+| - | - |
+| basic_virtual_machine | Launch a virtual machine with Ubuntu 20.04 |
+| azure_file_share_data | Network attachable drive (mountable via smb://) |
+| azure_file_share_home | A persistant 50GB home directory for Jupyter Servers (/home/jovyan) |
+| aci_plus_volume | JupyterLab via Azure Container Instance with a Docker container and azure_file_share_home volume |
+| batch | Run a Docker container via Azure Batch (non public) |
+| batch_vpn | Run a Docker container with public IP |
+| blob_storage | Create a blob storage bucket (Azure storage account container) |
+
+
 ## Initial Setup
+
+NOTE: this only needs doing once. We did it in Feb 2022 and are just leaving notes here for future reference
 
 Terraform keeps track of Cloud resources in "state" files, which are stored in
 in a "storage account container" backend (equivalent to AWS "S3 bucket"). It is first
@@ -39,24 +77,6 @@ terraform apply
 NOTE: `.tfstate` files are created separately for each collection of infrastructure,
 under the [STORAGE_ACCOUNT]/[CONTAINER]/[KEY], for example for our basic_virtual_machine
 the configuration is tracked in `az://tfstate5063/tfstate/linux-vm.tfstate`
-
-
-## Organization
-
-Each subfolder contains a stand-alone logical group of Cloud resources. To create the infrastructure,
-navigate to a subfolder in the terminal and follow the README.md instructions. But in brief
-you should only need to edit `terraform.tfvars` and then run `terraform apply`, and when you're done
-with the resources `terraform destroy`
-
-| subfolder | description |
-| - | - |
-| basic_virtual_machine | Launch a virtual machine with Ubuntu 20.04 |
-| azure_file_share_data | Network attachable drive (mountable via smb://) |
-| azure_file_share_home | A persistant 50GB home directory for Jupyter Servers (/home/jovyan) |
-| aci_plus_volume | JupyterLab via Azure Container Instance with a Docker container and azure_file_share_home volume |
-| batch | Run a Docker container via Azure Batch (non public) |
-| batch_vpn | Run a Docker container with public IP |
-| blob_storage | Create a blob storage bucket (Azure storage account container) |
 
 
 ## References
