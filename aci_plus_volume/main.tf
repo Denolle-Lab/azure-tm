@@ -21,7 +21,7 @@ provider "azurerm" {
 # Get key to access existing Azure File Share
 data "azurerm_storage_account" "example" {
   name                = var.file_share_storage_account
-  resource_group_name = "${var.file_share}-fileshare-resourcegroup"
+  resource_group_name = var.file_share
 }
 
 resource "random_id" "token" {

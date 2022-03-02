@@ -4,6 +4,8 @@ Mount a persistant network drive to the Azure Container Instance
 
 ```
 terraform init
+# Name your workspace something informative:
+terraform workspace new scott
 terraform apply
 ```
 
