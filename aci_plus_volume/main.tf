@@ -21,7 +21,7 @@ provider "azurerm" {
 # Get key to access existing Azure File Share
 data "azurerm_storage_account" "example" {
   name                = var.file_share_storage_account
-  resource_group_name = var.file_share
+  resource_group_name = var.file_share_resource_group
 }
 
 resource "random_id" "token" {
@@ -57,7 +57,7 @@ resource "azurerm_container_group" "example" {
       mount_path = "/home/jovyan"
       read_only  = false
 
-      share_name = var.file_share
+      share_name = var.file_share_name
       storage_account_name = var.file_share_storage_account
       storage_account_key  = data.azurerm_storage_account.example.primary_access_key
     }

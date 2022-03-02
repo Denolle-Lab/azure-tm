@@ -3,5 +3,7 @@ location = "westus2"
 image    = "uwessds/seisbench:latest"
 cpu      = "4"
 ram      = "16"
-file_share = "seisbench"
+# Azure File share information
+file_share_resource_group = "seisbench-fileshare-data"
+file_share_name = "seisbench"
 file_share_storage_account = "seisbench"

@@ -23,7 +23,12 @@ variable "image" {
   description = "Image on DockerHub to pull and run"
 }
 
-variable "file_share" {
+variable "file_share_resource_group" {
+  default     = "seisbench"
+  description = "Azure File Resouce Group"
+}
+
+variable "file_share_name" {
   default     = "seisbench"
   description = "Azure File Share Name"
 }
