@@ -1,6 +1,6 @@
 prefix   = "scott"
 location = "westus2"
-image    = "uwessds/seisbench:latest"
+image    = "uwessds/seisbench:2022.03.03"
 # NOTE: that you must set compatible resource limit requests!
 # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-region-availability
 cpu      = "4"
