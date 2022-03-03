@@ -29,7 +29,7 @@ resource "random_id" "token" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "${var.prefix}-resources"
+  name     = "${terraform.workspace}"
   location = var.location
 }
 
@@ -47,8 +47,18 @@ resource "azurerm_container_group" "example" {
     cpu    = var.cpu
     memory = var.ram
 
+    # Optional GPU block if var.gpu=true
+    dynamic "gpu" {
+      for_each = var.gpu[*]
+      content {
+        count = 1
+        sku   = var.gpu_type
+      }
+    }
+
     environment_variables = {
       JUPYTER_TOKEN = random_id.token.hex
+      JUPYTER_ALLOW_INSECURE_WRITES=true
     }
 
     # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files#get-storage-credentials
@@ -57,7 +67,7 @@ resource "azurerm_container_group" "example" {
       mount_path = "/home/jovyan"
       read_only  = false
 
-      share_name = var.file_share_name
+      share_name           = var.file_share_name
       storage_account_name = var.file_share_storage_account
       storage_account_key  = data.azurerm_storage_account.example.primary_access_key
     }

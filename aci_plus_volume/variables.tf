@@ -23,6 +23,16 @@ variable "image" {
   description = "Image on DockerHub to pull and run"
 }
 
+variable "gpu" {
+  default     = false
+  description = "Whether to attach a GPU"
+}
+
+variable "gpu_type" {
+  default     = "K80"
+  description = "One of: K80, P100, or V100 (increasing performance)"
+}
+
 variable "file_share_resource_group" {
   default     = "seisbench"
   description = "Azure File Resouce Group"
