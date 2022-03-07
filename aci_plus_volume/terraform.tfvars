@@ -1,6 +1,5 @@
-prefix   = "seisbench"
 location = "westus2"
-image    = "uwessds/seisbench:latest"
+image    = "uwessds/seisbench:2022.03.02"
 cpu      = "4"
 ram      = "16"
 # Azure File share information

@@ -34,11 +34,11 @@ resource "azurerm_resource_group" "example" {
 }
 
 resource "azurerm_container_group" "example" {
-  name                = "${var.prefix}-container"
+  name                = "${terraform.workspace}-container"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   ip_address_type     = "public"
-  dns_name_label      = var.prefix
+  dns_name_label      = "${terraform.workspace}"
   os_type             = "linux"
 
   container {

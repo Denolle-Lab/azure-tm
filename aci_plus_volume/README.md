@@ -36,6 +36,7 @@ terraform destroy
 
 * https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_group
 * https://docs.microsoft.com/en-us/azure/container-instances/container-instances-gpu
+* https://github.com/hashicorp/terraform-provider-azurerm/tree/main/examples/container-instance
 
 
 ## Troubleshooting
