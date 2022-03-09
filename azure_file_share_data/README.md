@@ -36,8 +36,8 @@ You can mount this drive on another computer using the `smb://` protocol with th
 
 ### MacOS Terminal
 ```
-export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name grizzly6zua --query "[0].value" | tr -d '"'`
 export STORAGE_ACCOUNT="grizzly6zua"
+export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name ${STORAGE_ACCOUNT} --query "[0].value" | tr -d '"'`
 export SHARE_NAME="grizzly"
 open "smb://${STORAGE_ACCOUNT}:${STORAGE_ACCOUNT_KEY}@${STORAGE_ACCOUNT}.file.core.windows.net/${SHARE_NAME}"
 ```
@@ -46,8 +46,8 @@ open "smb://${STORAGE_ACCOUNT}:${STORAGE_ACCOUNT_KEY}@${STORAGE_ACCOUNT}.file.co
 
 NOTE that you need 'sudo' permissions to mount the drive, but the local drive folder will be owned by your user and group.
 ```
-export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name grizzly6zua --query "[0].value" | tr -d '"'`
 export STORAGE_ACCOUNT="grizzly6zua"
+export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name ${STORAGE_ACCOUNT} --query "[0].value" | tr -d '"'`
 export SHARE_NAME="grizzly"
 export MOUNT_DIR="$HOME/$SHARE_NAME"
 mkdir -p $MOUNT_DIR
