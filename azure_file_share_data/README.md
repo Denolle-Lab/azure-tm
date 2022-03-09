@@ -63,3 +63,4 @@ sudo umount $MOUNT_DIR
 
 * https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-mac
 * https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files
+* https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-linux
