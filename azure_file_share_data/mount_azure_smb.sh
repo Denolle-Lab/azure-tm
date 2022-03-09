@@ -1,10 +1,10 @@
 # Note: script requires sudo permissions and STORAGE_ACCOUNT, STORAGE_ACCOUNT_KEY, and SHARE_NAME environment variables
 
-MOUNT_DIR=/mnt/${SHARE_NAME}
+MOUNT_DIR=/mount/${SHARE_NAME}
 CRED_FILE=/etc/smbcredentials/${STORAGE_ACCOUNT}.cred
 
 # Create mount folder
-sudo mkdir /mnt/$SHARE_NAME
+sudo mkdir ${MOUNT_DIR}
 
 # Write local credentials
 if [ ! -d "/etc/smbcredentials" ]; then

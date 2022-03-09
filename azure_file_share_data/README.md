@@ -29,7 +29,7 @@ Note that the name of the storage account is randomly generated, in the example 
 
 You can mount this drive on another computer using the `smb://` protocol with the following syntax: `smb://<storage-account-name>:<storage-account-key>@<storage-account-name>.file.core.windows.net/<share-name>`
 
-### MacOS Finder 
+### MacOS Finder
     Go -> Connect to Server -> `smb://grizzly6zua.file.core.windows.net/grizzly`
     Name: STORAGE_ACCOUNT
     Password: STORAGE_ACCOUNT_KEY
@@ -49,12 +49,13 @@ There is a `mount_azure_smb.sh` script in this subfolder. NOTE that you need 'su
 export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name grizzly6zua --query "[0].value" | tr -d '"'`
 export STORAGE_ACCOUNT="grizzly6zua"
 export SHARE_NAME="grizzly"
-./mount_azure_smb.sh
+sudo ./mount_azure_smb.sh
 ```
 
 4. To unmount the drive:
 ```
-umount /mnt/${SHARE_NAME}
+sudo umount /mnt/${SHARE_NAME}
+sudo rm -rf /mnt/${SHARE_NAME}
 ```
 
 ## References
