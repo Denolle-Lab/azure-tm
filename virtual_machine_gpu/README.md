@@ -35,7 +35,7 @@ NOTE: [As of 3/2022 Azure recommends NCv3 or newer](https://docs.microsoft.com/e
 * NCv2-series VMs are powered by NVIDIA Tesla P100 GPUs. These GPUs can provide more than 2x the computational performance of the NC-series.
 
 | Size |	vCPU |	Memory: GiB |	Temp storage (SSD) GiB |	GPU |	GPU memory: GiB |	Max data disks | Max uncached disk throughput: IOPS/MBps |	Max NICs |
-| - |	- |	- |	-|	- |	- |	- |	- |
+| - |	- |	- |	-|	- |	- |	- |	- | - |
 | Standard_NC6s_v2 |	6 |	112 |	736 |	1 |	16 |	12 |	20000/200 |	4 |
 
 *NOTE: 1 GPU = one P100 card.*
@@ -45,7 +45,7 @@ NOTE: [As of 3/2022 Azure recommends NCv3 or newer](https://docs.microsoft.com/e
 * NCv3-series VMs are powered by NVIDIA Tesla V100 GPUs. These GPUs can provide 1.5x the computational performance of the NCv2-series.
 
 | Size |	vCPU |	Memory: GiB |	Temp storage (SSD) GiB |	GPU |	GPU memory: GiB |	Max data disks | Max uncached disk throughput: IOPS/MBps |	Max NICs |
-| - |	- |	- |	-|	- |	- |	- |	- |
+| - |	- |	- |	-|	- |	- |	- |	- | - |
 | Standard_NC6s_v3 |	6 |	112 |	736 |	1 |	16 |	12 |	20000/200 |	4 |
 | Standard_NC12s_v3 |	12 |	224 |	1474 |	2 |	32 |	24 |	40000/400 |	8 |
 | Standard_NC24s_v3	| 24	| 448 |	2948 |	4 |	64	| 32	| 80000/800 |	8 |
