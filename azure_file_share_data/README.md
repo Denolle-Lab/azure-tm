@@ -29,11 +29,12 @@ Note that the name of the storage account is randomly generated, in the example 
 
 You can mount this drive on another computer using the `smb://` protocol with the following syntax: `smb://<storage-account-name>:<storage-account-key>@<storage-account-name>.file.core.windows.net/<share-name>`
 
-1. On a Mac: Finder -> Go -> Connect to Server -> `smb://grizzly6zua.file.core.windows.net/grizzly`
+### MacOS Finder 
+    Go -> Connect to Server -> `smb://grizzly6zua.file.core.windows.net/grizzly`
     Name: STORAGE_ACCOUNT
     Password: STORAGE_ACCOUNT_KEY
 
-2. Mac Terminal:
+### MacOS Terminal
 ```
 export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name grizzly6zua --query "[0].value" | tr -d '"'`
 export STORAGE_ACCOUNT="grizzly6zua"
@@ -41,9 +42,9 @@ export SHARE_NAME="grizzly"
 open "smb://${STORAGE_ACCOUNT}:${STORAGE_ACCOUNT_KEY}@${STORAGE_ACCOUNT}.file.core.windows.net/${SHARE_NAME}"
 ```
 
-3. Linux terminal
+### Linux Terminal
 
-There is a `mount_smb.sh` script in this subfolder. NOTE that you need 'sudo' permissions to mount the drive
+There is a `mount_azure_smb.sh` script in this subfolder. NOTE that you need 'sudo' permissions to mount the drive
 ```
 export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name grizzly6zua --query "[0].value" | tr -d '"'`
 export STORAGE_ACCOUNT="grizzly6zua"
@@ -53,7 +54,7 @@ export SHARE_NAME="grizzly"
 
 4. To unmount the drive:
 ```
-umount /mnt/grizzly
+umount /mnt/${SHARE_NAME}
 ```
 
 ## References
