@@ -44,18 +44,19 @@ open "smb://${STORAGE_ACCOUNT}:${STORAGE_ACCOUNT_KEY}@${STORAGE_ACCOUNT}.file.co
 
 ### Linux Terminal
 
-There is a `mount_azure_smb.sh` script in this subfolder. NOTE that you need 'sudo' permissions to mount the drive
+NOTE that you need 'sudo' permissions to mount the drive, but the local drive folder will be owned by your user and group.
 ```
 export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name grizzly6zua --query "[0].value" | tr -d '"'`
 export STORAGE_ACCOUNT="grizzly6zua"
 export SHARE_NAME="grizzly"
-sudo ./mount_azure_smb.sh
+export MOUNT_DIR="$HOME/$SHARE_NAME"
+mkdir -p $MOUNT_DIR
+sudo mount -t cifs //${STORAGE_ACCOUNT}.file.core.windows.net/${SHARE_NAME} $MOUNT_DIR -o username=$STORAGE_ACCOUNT,password=$STORAGE_ACCOUNT_KEY,uid=$UID,gid=$GROUPS,serverino
 ```
 
-4. To unmount the drive:
+4. unmount drive:
 ```
-sudo umount /mnt/${SHARE_NAME}
-sudo rm -rf /mnt/${SHARE_NAME}
+sudo umount $MOUNT_DIR
 ```
 
 ## References
