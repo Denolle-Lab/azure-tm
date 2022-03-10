@@ -59,6 +59,11 @@ sudo mount -t cifs //${STORAGE_ACCOUNT}.file.core.windows.net/${SHARE_NAME} $MOU
 sudo umount $MOUNT_DIR
 ```
 
+## Cost
+
+Seems to be ~$0.60 per month per 10GB of data based on https://azure.microsoft.com/en-us/pricing/calculator/. See also https://azure.microsoft.com/en-us/pricing/details/storage/files/ for various higher performance options at higher cost.
+
+
 ## References
 
 * https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-mac
