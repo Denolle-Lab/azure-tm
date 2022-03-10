@@ -1,6 +1,6 @@
-# Launch a virtual machine on azure with a single GPU
+# Azure Virtual Machine + GPU
 
-Launch machine with an NVIDIA GPU
+Launch machine with a *single* NVIDIA GPU
 
 ## Launch
 
@@ -11,62 +11,38 @@ terraform apply --var-file="scott-NCv3.tfvars"
 ```
 
 ```
-terraform destroy
+terraform destroy --var-file="scott-NCv3.tfvars"
 ```
 
 
 ## Abbreviated summary of machine types
 
-NOTE: [As of 3/2022 Azure recommends NCv3 or newer](https://docs.microsoft.com/en-us/azure/virtual-machines/n-series-migration)
+> ⚠️ NOTE: [As of 3/2022 Azure recommends v3 or newer](https://docs.microsoft.com/en-us/azure/virtual-machines/n-series-migration). "[NC_v3-series](https://docs.microsoft.com/en-us/azure/virtual-machines/ncv3-series) VMs are powered by the NVIDIA Tesla GPUs and the Intel CPUs. NC_v2 can provide 2x the computational performance of the NC-series, and NC_v3 can provide 1.5x the computational performance of the NCv2-series." 
 
-## NC-series
+| Size |	vCPU |	Memory (GiB) |	Temp SSD (GiB) |	GPU |	GPU memory (GiB) | Max uncached disk throughput (IOPS/MBps) |Expected network bandwidth (Mbps) |
+| - |	- |	- |	- |	- |	- |	- | - |
+| Standard_NC12 |	12 |	112 |	680 |	K80	 | 24	| ? | ? |
+| Standard_NC6s_v2 |	6 |	112 |	736 |	P100 |	16 |	20000/200 |	? |
+| **Standard_NC6s_v3** |	6 |	112 |	736 |	V100 |	16 |	20000/200 | ? |
+| **Standard_NC16as_T4_v3**	| 16 |	110 |	360 |	T4 |	16 | ?  | 8000 |
+| Standard_NV24s_v3 |	24 |	224 |	640 |	M60 |	16	| 40000/400 |	12000	|
 
-* NC-series VMs are powered by the NVIDIA Tesla K80 card and the Intel Xeon E5-2690 v3 (Haswell) processor.
-
-| Size |	vCPU |	Memory: GiB |	Temp storage (SSD) GiB |	GPU |	GPU memory: GiB |	Max data disks |	Max NICs |
-| - |	- |	- |	-|	- |	- |	- |	- |
-|Standard_NC6 |	6 |	56 |	340 |	1 |	12 | 24 | 1 |
-|Standard_NC12|	12 |	112 |	680 |	2	 |24	| 48	| 2 |
-
-*NOTE: 1 GPU = one-half K80 card.*
-
-## NCv2-series
-
-* NCv2-series VMs are powered by NVIDIA Tesla P100 GPUs. These GPUs can provide more than 2x the computational performance of the NC-series.
-
-| Size |	vCPU |	Memory: GiB |	Temp storage (SSD) GiB |	GPU |	GPU memory: GiB |	Max data disks | Max uncached disk throughput: IOPS/MBps |	Max NICs |
-| - |	- |	- |	-|	- |	- |	- |	- | - |
-| Standard_NC6s_v2 |	6 |	112 |	736 |	1 |	16 |	12 |	20000/200 |	4 |
-
-*NOTE: 1 GPU = one P100 card.*
-
-## NCv3-series
-
-* NCv3-series VMs are powered by NVIDIA Tesla V100 GPUs. These GPUs can provide 1.5x the computational performance of the NCv2-series.
-
-| Size |	vCPU |	Memory: GiB |	Temp storage (SSD) GiB |	GPU |	GPU memory: GiB |	Max data disks | Max uncached disk throughput: IOPS/MBps |	Max NICs |
-| - |	- |	- |	-|	- |	- |	- |	- | - |
-| Standard_NC6s_v3 |	6 |	112 |	736 |	1 |	16 |	12 |	20000/200 |	4 |
-| Standard_NC12s_v3 |	12 |	224 |	1474 |	2 |	32 |	24 |	40000/400 |	8 |
-| Standard_NC24s_v3	| 24	| 448 |	2948 |	4 |	64	| 32	| 80000/800 |	8 |
-
-
-*NOTE: 1 GPU = one V100 card.*
-
-*NOTE: Temp storage (SSD) GiB is automatically mounted at `/mnt`, but you need to change permissions for non-root users: `sudo chmod -R a+w /mnt`*
-
+NOTE: as of 3/2022: Google Colab Free uses K80 GPUs, Microsoft Planetary Computer and AWS Sagemaker Studio Lab use T4 GPUs
 
 ## References
 
 * https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
 * https://docs.microsoft.com/en-us/azure/virtual-machines/sizes-gpu
-
-* https://azuremarketplace.microsoft.com/en-US/
 * https://azuremarketplace.microsoft.com/en-us/marketplace/apps/nvidia.pytorch_from_nvidia?tab=PlansAndPrice
 * https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension
+* https://developer.nvidia.com/deep-learning-performance-training-inference
+* https://timdettmers.com/2020/09/07/which-gpu-for-deep-learning/
 
 
 ## Troubleshooting
+
+### Accessing Temp SSD storage
+Temp storage (SSD) GiB is automatically mounted at `/mnt`, but you need to change permissions for non-root users: `sudo chmod -R a+w /mnt`*
 
 ### What ready-to-use machine images are available?
 NOTE: NVIDIA provides free curated machine images, but you have to accept terms
