@@ -19,13 +19,13 @@ terraform destroy --var-file="scott-NCv3.tfvars"
 
 > ⚠️ NOTE: [As of 3/2022 Azure recommends v3 or newer](https://docs.microsoft.com/en-us/azure/virtual-machines/n-series-migration). "[NC_v3-series](https://docs.microsoft.com/en-us/azure/virtual-machines/ncv3-series) VMs are powered by the NVIDIA Tesla GPUs and the Intel CPUs. NC_v2 can provide 2x the computational performance of the NC-series, and NC_v3 can provide 1.5x the computational performance of the NCv2-series." 
 
-| Size |	vCPU |	Memory (GiB) |	Temp SSD (GiB) |	GPU |	GPU memory (GiB) | Max uncached disk throughput (IOPS/MBps) |Expected network bandwidth (Mbps) |
-| - |	- |	- |	- |	- |	- |	- | - |
-| Standard_NC12 |	12 |	112 |	680 |	K80	 | 24	| ? | ? |
-| Standard_NC6s_v2 |	6 |	112 |	736 |	P100 |	16 |	20000/200 |	? |
-| **Standard_NC6s_v3** |	6 |	112 |	736 |	V100 |	16 |	20000/200 | ? |
-| **Standard_NC16as_T4_v3**	| 16 |	110 |	360 |	T4 |	16 | ?  | 8000 |
-| Standard_NV24s_v3 |	24 |	224 |	640 |	M60 |	16	| 40000/400 |	12000	|
+| Size |	vCPU |	Memory (GiB) |	Temp SSD (GiB) |	GPU |	GPU memory (GiB) | Max uncached disk throughput (IOPS/MBps) |Expected network bandwidth (Mbps) | Cost ($/hr) |
+| - |	- |	- |	- |	- |	- |	- | - | - |
+| Standard_NC12 |	12 |	112 |	680 |	K80	 | 24	| ? | ? | $1.80  |
+| Standard_NC6s_v2 |	6 |	112 |	736 |	P100 |	16 |	20000/200 |	? | | $2.07 |
+| **Standard_NC6s_v3** |	6 |	112 |	736 |	V100 |	16 |	20000/200 | ? | $3.06 |
+| **Standard_NC16as_T4_v3**	| 16 |	110 |	360 |	T4 |	16 | ?  | 8000 | $1.20  |
+| Standard_NV24s_v3 |	24 |	224 |	640 |	M60 |	16	| 40000/400 |	12000	| $2.28 |
 
 NOTE: as of 3/2022: Google Colab Free uses K80 GPUs, Microsoft Planetary Computer and AWS Sagemaker Studio Lab use T4 GPUs
 
