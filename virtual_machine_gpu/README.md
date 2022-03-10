@@ -22,7 +22,7 @@ terraform destroy --var-file="scott-NCv3.tfvars"
 | Size |	vCPU |	Memory (GiB) |	Temp SSD (GiB) |	GPU |	GPU memory (GiB) | Max uncached disk throughput (IOPS/MBps) |Expected network bandwidth (Mbps) | Cost ($/hr) |
 | - |	- |	- |	- |	- |	- |	- | - | - |
 | Standard_NC12 |	12 |	112 |	680 |	K80	 | 24	| ? | ? | $1.80  |
-| Standard_NC6s_v2 |	6 |	112 |	736 |	P100 |	16 |	20000/200 |	? | | $2.07 |
+| Standard_NC6s_v2 |	6 |	112 |	736 |	P100 |	16 |	20000/200 |	? | $2.07 |
 | **Standard_NC6s_v3** |	6 |	112 |	736 |	V100 |	16 |	20000/200 | ? | $3.06 |
 | **Standard_NC16as_T4_v3**	| 16 |	110 |	360 |	T4 |	16 | ?  | 8000 | $1.20  |
 | Standard_NV24s_v3 |	24 |	224 |	640 |	M60 |	16	| 40000/400 |	12000	| $2.28 |
