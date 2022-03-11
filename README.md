@@ -5,10 +5,10 @@ create and remove Cloud resources on Microsoft Azure:
 
 | subfolder | description |
 | - | - |
-| basic_virtual_machine | Virtual machine with Ubuntu 20.04 |
-| azure_file_share_data | Network attachable drive (mountable via smb://) |
-| aci_plus_volume | JupyterLab Docker Container via Azure Container Instance with azure_file_share_data home directory |
-| virtual_machine_gpu | GPU Virtual Machine with NVIDIA Drivers + conda preinstalled |
+| [basic_virtual_machine](basic_virtual_machine) | Virtual machine with Ubuntu 20.04 |
+| [azure_file_share_data](azure_file_share_data) | Network attachable drive (mountable via smb://) |
+| [aci_plus_volume](aci_plus_volume) | JupyterLab Docker Container via Azure Container Instance with azure_file_share_data home directory |
+| [virtual_machine_gpu](virtual_machine_gpu) | GPU Virtual Machine with NVIDIA Drivers + conda preinstalled |
 
 ## Setup
 
