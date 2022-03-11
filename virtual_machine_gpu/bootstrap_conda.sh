@@ -13,6 +13,6 @@ bash Mambaforge-Linux-x86_64.sh -b
 rm Mambaforge-Linux-x86_64.sh
 
 # Ensure that conda is located when logging in
-echo ". ./mambaforge/etc/profile.d/conda.sh" > /etc/profile.d/init_conda.sh
+echo ". /mambaforge/etc/profile.d/conda.sh" > /etc/profile.d/init_conda.sh
 
 echo "Done"
