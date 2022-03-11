@@ -1,7 +1,14 @@
 # Infrastructure-as-code on Azure
 
 This repository contains [Terraform](https://www.terraform.io) code, to easily
-create and remove Cloud resources on Microsoft Azure.
+create and remove Cloud resources on Microsoft Azure:
+
+| subfolder | description |
+| - | - |
+| basic_virtual_machine | Virtual machine with Ubuntu 20.04 |
+| azure_file_share_data | Network attachable drive (mountable via smb://) |
+| aci_plus_volume | JupyterLab Docker Container via Azure Container Instance with azure_file_share_data home directory |
+| virtual_machine_gpu | GPU Virtual Machine with NVIDIA Drivers + conda preinstalled |
 
 ## Setup
 
@@ -48,18 +55,6 @@ terraform apply
 terraform destroy
 terraform workspace delete scott-incubator2022
 ```
-
-### Directory
-| subfolder | description |
-| - | - |
-| basic_virtual_machine | Launch a virtual machine with Ubuntu 20.04 |
-| azure_file_share_data | Network attachable drive (mountable via smb://) |
-| azure_file_share_home | A persistant 50GB home directory for Jupyter Servers (/home/jovyan) |
-| aci_plus_volume | JupyterLab via Azure Container Instance with a Docker container and azure_file_share_home volume |
-| batch | Run a Docker container via Azure Batch (non public) |
-| batch_vpn | Run a Docker container with public IP |
-| blob_storage | Create a blob storage bucket (Azure storage account container) |
-
 
 ## Initial Setup
 
