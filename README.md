@@ -64,6 +64,10 @@ terraform workspace delete scott-incubator2022
 terraform workspace list
 terraform select scottGPU
 terraform state list
+
+# We can look at details (e.g. names, IP addresses, etc) of specific resources from `terraform state list`,
+# for example azurerm_storage_account.fileshare-data:
+terraform state show azurerm_storage_account.fileshare-data
 ```
 
 #### Workspace state
