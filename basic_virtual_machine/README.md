@@ -1,17 +1,18 @@
 # Launch a virtual machine on azure that we can log into
 
-
 In brief:
 * [Standard_F2](https://docs.microsoft.com/en-us/azure/virtual-machines/sizes-previous-gen) virtual machine (2 vCPU, 4GB RAM, 32 GB SSD)
 * westus2 (Washington state)
 * Ubuntu 20.04
 
-☝️ you can edit `terraform.tfvars` or `main.tf` to change these settings
+## Deploy infrastructure (takes ~ 2min)
+💡 NOTE: Name your workspace something informative! All Cloud resources will appear under an Azure Resource Group with the workspace name ("scott-incubator2022" in the example below"):
 
-## Deploy infrastructure (takes ~ 1min)
+👀 NOTE: You can add a separate variable file instead of using the default `terraform.tfvars`. This is helpful for storing multiple configurations for other lab members to see and not interfere with version control. Just remember to point to it when you use `terraform apply -var-file="scott-incubator2022.tfvars"`
+
 ```
-az login
 terraform init
+terraform workspace new scott-incubator2022
 terraform apply
 ```
 
@@ -29,6 +30,7 @@ ssh -Y adminuser@20.69.102.24
 ## Clean up when you're done!
 ```
 terraform destroy
+terraform workspace delete scott-incubator2022
 ```
 
 ## References

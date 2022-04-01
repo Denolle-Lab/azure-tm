@@ -10,8 +10,10 @@ terraform workspace new scott-NCv3
 terraform apply --var-file="scott-NCv3.tfvars"
 ```
 
+⚠️ GPUs are expensive, so delete these resources when not in use! 
 ```
 terraform destroy --var-file="scott-NCv3.tfvars"
+terraform workspace delete scott-NCv3
 ```
 
 
