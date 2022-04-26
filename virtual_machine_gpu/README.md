@@ -51,13 +51,22 @@ NOTE: NVIDIA provides free curated machine images, but you have to accept terms
 to use them
 
 `az vm image list --offer nvidia --all --output table`
+#### tensorflow 
+`az vm image terms accept  --urn nvidia:tensorflow_from_nvidia:ngc-tensorflow-version-20-08-1:20.08.1`
 
+`az vm create --resource-group myResourceGroup --name myVM --image nvidia:tensorflow_from_nvidia:ngc-tensorflow-version-20-08-1:20.08.1  --location westus --size Standard_NC6s_v3`
+
+#### pytorch
 `az vm image show --location westus --urn nvidia:pytorch_from_nvidia:ngc-pytorch-version-21-11-0:21.11.0`
 
 `az vm image terms accept --urn nvidia:pytorch_from_nvidia:ngc-pytorch-version-21-11-0:21.11.0`
 
-* https://docs.nvidia.com/ngc/ngc-deploy-public-cloud/ngc-azure/index.html
-* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
+#### Run Python for tensorflow/pytorch
+The packages exist as docker images. To list images available in the vm:
+`docker image ls`
+
+`docker run --gpus all --rm -it nvcr.io/nvidia/tensorflow:20.07-tf2-py3`
+
 
 ### Mount an Azure File Share drive
 https://github.com/Denolle-Lab/azure/tree/main/azure_file_share_data#linux-terminal
@@ -67,3 +76,8 @@ https://portal.azure.com/#blade/Microsoft_Azure_Capacity/UsageAndQuota.ReactView
 
 ### Run a script at startup
 http://hypernephelist.com/2019/06/25/azure-vm-custom-script-extensions-with-terraform.html
+
+### References
+* https://docs.nvidia.com/ngc/ngc-deploy-public-cloud/ngc-azure/index.html
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
+* https://docs.nvidia.com/ngc/ngc-azure-setup-guide/running-containers.html#running-containers
