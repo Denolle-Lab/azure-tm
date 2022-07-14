@@ -1,14 +1,10 @@
 # Run a Docker Container on Azure
 
-[Azure Container Instance](https://azure.microsoft.com/en-us/services/container-instances/#overview) is a convenient way to run software defined by a Docker Image. You just specify computing resource requirements (CPU, RAM, GPU).
+* Mount a persistant network drive to the [Azure Container Instance](https://azure.microsoft.com/en-us/services/container-instances/#overview)
+* This let's you run a Docker container with attached storage that can be used on other machines
+* Optionally attach a GPU
 
-## Prerequisites
-* This setup is specific to a Docker Image that bundles JupyterLab with a custom Python environment (specified here https://github.com/Denolle-Lab/seisbench-jupyter)
-* A network drive to persist files created under `/home/jovyan` (drive created separately via terraform: [azure_file_share_data](../azure_file_share_data))
-
-⚠️ Limitations! While this is an easy way to run containers, you are limited in terms of computational resources compared to configuring your own virtual machines (https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quotas)
-
-## Usage
+⚠️ NOTE: Limitations! While this is an easy way to run containers, you are limited in terms of computational resources compared to running your own virtual machines or azure kubernetes service (https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quotas)
 
 💡 NOTE: Name your workspace something informative! All Cloud resources will appear under an Azure Resource Group with the workspace name ("scottGPU" in the example below"):
 

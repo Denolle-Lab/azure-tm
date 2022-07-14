@@ -34,29 +34,17 @@ You can mount this drive on another computer using the `smb://` protocol with th
     Name: STORAGE_ACCOUNT
     Password: STORAGE_ACCOUNT_KEY
 
-👀 In a terminal, you can get the Password/STORAGE_ACCOUNT_KEY with `az storage account keys list --account-name ${STORAGE_ACCOUNT} --query "[0].value" | tr -d '"'`
-
-<img width="542" alt="Screen Shot 2022-04-01 at 12 07 19 PM" src="https://user-images.githubusercontent.com/3924836/161327858-c34653b0-f23f-4a2a-bac8-6699dd33ec38.png">
-
 ### MacOS Terminal
-Running the following code, will pull up the same login box
 ```
 export STORAGE_ACCOUNT="grizzly6zua"
+export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name ${STORAGE_ACCOUNT} --query "[0].value" | tr -d '"'`
 export SHARE_NAME="grizzly"
-open smb://${STORAGE_ACCOUNT}.file.core.windows.net/${SHARE_NAME}
+open "smb://${STORAGE_ACCOUNT}:${STORAGE_ACCOUNT_KEY}@${STORAGE_ACCOUNT}.file.core.windows.net/${SHARE_NAME}"
 ```
-
-If successful, you'll see your drive and can drag and drop files:
-
-<img width="859" alt="Screen Shot 2022-04-01 at 12 12 39 PM" src="https://user-images.githubusercontent.com/3924836/161327961-56945b96-0186-4dc9-aea0-00bb3d8c7e57.png">
-
-
-You can also access this drive from a terminal `ls /Volumes/grizzly`
-
 
 ### Linux Terminal
 
-⚠️ NOTE that you need 'sudo' permissions to mount the drive, but the local drive folder will be owned by your user and group.
+NOTE that you need 'sudo' permissions to mount the drive, but the local drive folder will be owned by your user and group.
 ```
 export STORAGE_ACCOUNT="grizzly6zua"
 export STORAGE_ACCOUNT_KEY=`az storage account keys list --account-name ${STORAGE_ACCOUNT} --query "[0].value" | tr -d '"'`

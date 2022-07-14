@@ -106,14 +106,14 @@ resource "azurerm_linux_virtual_machine" "main" {
 
   source_image_reference {
     publisher = "nvidia"
-    offer     = "pytorch_from_nvidia"
-    sku       = "ngc-pytorch-version-21-11-0"
+    offer     = "tensorflow_from_nvidia"
+    sku       = "ngc-tensorflow-version-21-11-0"
     version   = "21.11.0"
   }
 
   plan {
-    name      = "ngc-pytorch-version-21-11-0"
-    product   = "pytorch_from_nvidia"
+    name      = "ngc-tensorflow-version-21-11-0"
+    product   = "tensorflow_from_nvidia"
     publisher = "nvidia"
   }
 

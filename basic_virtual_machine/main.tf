@@ -19,12 +19,12 @@ features {}
 }
 
 resource "azurerm_resource_group" "main" {
-  name     = "${terraform.workspace}-resources"
+  name     = "${var.prefix}-resources"
   location = var.location
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = "${terraform.workspace}-network"
+  name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
@@ -38,14 +38,14 @@ resource "azurerm_subnet" "internal" {
 }
 
 resource "azurerm_public_ip" "pip" {
-  name                = "${terraform.workspace}-pip"
+  name                = "${var.prefix}-pip"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   allocation_method   = "Dynamic"
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${terraform.workspace}-nic1"
+  name                = "${var.prefix}-nic1"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 
@@ -58,7 +58,7 @@ resource "azurerm_network_interface" "main" {
 }
 
 resource "azurerm_network_interface" "internal" {
-  name                      = "${terraform.workspace}-nic2"
+  name                      = "${var.prefix}-nic2"
   resource_group_name       = azurerm_resource_group.main.name
   location                  = azurerm_resource_group.main.location
 
@@ -92,7 +92,7 @@ resource "azurerm_network_interface_security_group_association" "main" {
 }
 
 resource "azurerm_linux_virtual_machine" "main" {
-  name                            = "${terraform.workspace}-vm"
+  name                            = "${var.prefix}-vm"
   resource_group_name             = azurerm_resource_group.main.name
   location                        = azurerm_resource_group.main.location
   size                            = "Standard_F2"
